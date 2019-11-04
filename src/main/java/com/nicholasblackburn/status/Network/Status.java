@@ -6,16 +6,29 @@ import java.net.UnknownHostException;
 
 public class Status {
 
+    public boolean reachable; 
+
+    public String addr = "10.57.40.2"; // ip address of the roborio on the robot
+
+    public String status;
+
+
+
     // runs a ping to provided ip for 100 ms to calculate the tps
-public static void status() throws UnknownHostException{
+    public void status() throws UnknownHostException {
 
-    String addr = "10.57.40.2"; // ip address of the roborio on the robot
-     
-    try{
-        InetAddress address = InetAddress.getByName(addr);
-        boolean reachable = address.isReachable(10000);
+        try {
 
-        System.out.println("Is host reachable? " + reachable);
+            InetAddress address = InetAddress.getByName(addr);
+            reachable = address.isReachable(10000);
+
+            if(reachable == true){
+                status = "is reachable";
+
+            }else{
+                status = "Not reachable";
+
+            }
 
     } 
     catch (Exception e){
